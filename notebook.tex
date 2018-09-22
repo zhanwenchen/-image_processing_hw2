@@ -1,0 +1,1298 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{HW2}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    The ``brightness'' of an image is a subjective term. The National
+Telecommunications and Information Administration (NTIA)1 publishes
+standard definitions for the names of attributes of signals and images.
+The NTIA's US Federal Glossary of Telecommunication Terms (FS-1037C),
+states that ``'brightness' should now be used only for non-quantitative
+references to physiological sensations and perceptions of light.''2 So,
+the term conveys no precise technical meaning. For this course, we will
+define the brightness of an image to be its average intensity on a scale
+of \{0, . . . , 255\} or {[}0, 1{]} depending on the class of the image.
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Find a 24-bit truecolor image of your choice to use in these problems.
+  Display it in your report with a photo credit. The image should
+  exhibit a full range of values and colors. If both its linear
+  dimensions are greater than 512, resize it so the the larger of the
+  two dimensions is 512. Read the Matlab documentation on imresize().
+  Then use it with the ``bicubic'' option to resize your image. If both
+  the image's dimensions are less than or equal to 512 you may keep it
+  as is. Determine the image's class and dimensions (after resizing) and
+  include them in your report. Also compute the mean intensity value of
+  the image using the Matlab code, mu = mean(I(:)); where, of course, I
+  is the image array.
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{image} \PY{k}{as} \PY{n+nn}{mpimg}
+        \PY{k+kn}{from} \PY{n+nn}{PIL} \PY{k}{import} \PY{n}{Image}
+        
+        \PY{k+kn}{from} \PY{n+nn}{skimage} \PY{k}{import} \PY{n}{data}\PY{p}{,} \PY{n}{color}
+        \PY{k+kn}{from} \PY{n+nn}{skimage}\PY{n+nn}{.}\PY{n+nn}{transform} \PY{k}{import} \PY{n}{rescale}\PY{p}{,} \PY{n}{resize}\PY{p}{,} \PY{n}{downscale\PYZus{}local\PYZus{}mean}
+        
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{havana} \PY{o}{=} \PY{n}{Image}\PY{o}{.}\PY{n}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ZhanwenChenHavana.jpg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{maxwidth} \PY{o}{=} \PY{l+m+mi}{512}
+        \PY{n}{maxheight} \PY{o}{=} \PY{l+m+mi}{512}
+        \PY{n}{ratio} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{maxwidth}\PY{o}{/}\PY{n}{havana}\PY{o}{.}\PY{n}{size}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{maxheight}\PY{o}{/}\PY{n}{havana}\PY{o}{.}\PY{n}{size}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{new\PYZus{}shape} \PY{o}{=} \PY{p}{(}\PY{n}{havana}\PY{o}{.}\PY{n}{size}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{ratio}\PY{p}{,} \PY{n}{havana}\PY{o}{.}\PY{n}{size}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{ratio}\PY{p}{)}
+        \PY{n}{havana}\PY{o}{.}\PY{n}{thumbnail}\PY{p}{(}\PY{n}{new\PYZus{}shape}\PY{p}{,} \PY{n}{Image}\PY{o}{.}\PY{n}{BICUBIC}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{havana}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Havana, Cuba. ©Zhanwen Chen 2016}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_3_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Determine the image's class and dimensions (after resizing) and
+  include them in your report.
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{havana\PYZus{}np} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{havana}\PY{p}{)} \PY{c+c1}{\PYZsh{} }
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1. havana\PYZus{}np.dtype =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{havana\PYZus{}np}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1. havana\_np.dtype = uint8
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Also compute the mean intensity value of the image using the Matlab
+  code, mu = mean(I(:)); where, of course, I is the image array.
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{original\PYZus{}mean} \PY{o}{=} \PY{n}{havana\PYZus{}np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1. The mean intensity value of the image is}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{original\PYZus{}mean}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1. The mean intensity value of the image is 128.3995238422532
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+\end{enumerate}
+
+Write a Matlab function to alter the brightness of an image of class
+uint8. The function should work on either grayscale or truecolor images.
+It does not need to work on colormapped images.
+
+The average intensity of an image can be used as an indicator of its
+perceived brightness. Many off-the-shelf image processing programs have
+a brightness control based on a percent change in image brightness.
+Therefore the function you write should input an image array, say I, of
+class uint8 and a number, p.~If p is less than 100 the result should be
+a darker image; if it is greater than 100 the result should be brighter
+than the original.
+
+The output should be an image, say J, of class uint8 whose mean
+intensity is (in theory) p percent of the mean value of I.
+
+The first thing your function should do is convert the image to double.
+Then compute the mean of the image, mu = mean(I(:));.
+
+Then compute the brightness shift, g = (p/100 - 1)*mu;
+
+Add g to every pixel in the image and convert the resulting image to
+uint8. (That can be done without loops in one line of code.)
+
+Return the brightness-shifted, class uint8 image.
+
+This function should not be long, so include the code in your report
+here, rather than in an appendix. If you are using Matlab 's code
+sections and publish function just cut and paste the function's code
+into the section and comment every line of it.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{def} \PY{n+nf}{adjustBrightness}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{p}\PY{p}{)}\PY{p}{:}
+            \PY{n}{mean} \PY{o}{=} \PY{n}{image}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+            \PY{n}{brightness\PYZus{}shift} \PY{o}{=} \PY{p}{(}\PY{n}{p}\PY{o}{/}\PY{l+m+mf}{100.0} \PY{o}{\PYZhy{}} \PY{l+m+mf}{1.0}\PY{p}{)} \PY{o}{*} \PY{n}{mean}\PY{p}{;}
+            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{rint}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{brightness\PYZus{}shift}\PY{p}{)}\PY{o}{.}\PY{n}{clip}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint8}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} must clip: otherwise 256=\PYZgt{}1 instead of 255}
+\end{Verbatim}
+
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+\end{enumerate}
+
+Increase and decrease the brightness of your image by 10\% and by 50\%.
+Then you will have 4 new images: one 10\% dimmer image, one 10\%
+brighter image, one 50\% dimmer image, and one 50\% brighter image.
+
+Display these in your report, each with a caption indicating which one
+it is. If you were to look at the 10\% brightness-shifted images and the
+original separately in random order, viewing other images between them,
+do you think you could accurately tell which was which? What about the
+50\% shifted images?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{havana\PYZus{}darker\PYZus{}10} \PY{o}{=} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{)}
+        \PY{n}{havana\PYZus{}brighter\PYZus{}10} \PY{o}{=} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{p}{,} \PY{l+m+mi}{110}\PY{p}{)}
+        \PY{n}{havana\PYZus{}darker\PYZus{}50} \PY{o}{=} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}
+        \PY{n}{havana\PYZus{}brighter\PYZus{}50} \PY{o}{=} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{p}{,} \PY{l+m+mi}{150}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} Display the original for comparison}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{havana}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3. Before Brightness Shift}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the bright\PYZhy{}shifted images}
+        \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+        \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} \PY{n}{horizontalalignment}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{havana\PYZus{}darker\PYZus{}10}\PY{p}{)}
+        \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10}\PY{l+s+si}{\PYZpc{} d}\PY{l+s+s1}{arker}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{havana\PYZus{}brighter\PYZus{}10}\PY{p}{)}
+        \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ brighter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{havana\PYZus{}darker\PYZus{}50}\PY{p}{)}
+        \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50}\PY{l+s+si}{\PYZpc{} d}\PY{l+s+s1}{arker}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{havana\PYZus{}brighter\PYZus{}50}\PY{p}{)}
+        \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ brighter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    3
+
+If you were to look at the 10\% brightness-shifted images and the
+original separately in random order, viewing other images between them,
+do you think you could accurately tell which was which? What about the
+50\% shifted images?
+
+\hypertarget{answer-i-wouldnt-be-able-to-accurately-tell-apart-the-10-darker-or-the-10-brighter-image.-however-the-50-shift-in-either-direction-is-much-more-obvious.}{%
+\paragraph{Answer: I wouldn't be able to accurately tell apart the 10\%
+darker or the 10\% brighter image. However, the 50\% shift in either
+direction is much more
+obvious.}\label{answer-i-wouldnt-be-able-to-accurately-tell-apart-the-10-darker-or-the-10-brighter-image.-however-the-50-shift-in-either-direction-is-much-more-obvious.}}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+\end{enumerate}
+
+From the uint8 image, I, compute and display the numbers,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{muI = mean(I(:))}
+\NormalTok{muI * }\FloatTok{0.5}
+\NormalTok{muI * }\FloatTok{0.9}
+\NormalTok{muI * }\FloatTok{1.1}
+\NormalTok{muI * }\FloatTok{1.5}
+\end{Highlighting}
+\end{Shaded}
+
+Compute and display the mean intensities of the 4 brightness-shifted
+uint8 images. (Be sure to label the numbers in your report.)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{4}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{havana\PYZus{}darker\PYZus{}10.mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{havana\PYZus{}darker\PYZus{}10}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{while 90}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ * original\PYZus{}mean =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mf}{0.9} \PY{o}{*} \PY{n}{original\PYZus{}mean}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{havana\PYZus{}brighter\PYZus{}10.mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{havana\PYZus{}brighter\PYZus{}10}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{while 110}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ * original\PYZus{}mean =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mf}{1.1} \PY{o}{*} \PY{n}{original\PYZus{}mean}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{havana\PYZus{}darker\PYZus{}50.mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{havana\PYZus{}darker\PYZus{}50}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{while 50}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ * original\PYZus{}mean =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mf}{0.5} \PY{o}{*} \PY{n}{original\PYZus{}mean}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{havana\PYZus{}brighter\PYZus{}50.mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{havana\PYZus{}brighter\PYZus{}50}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{while 150}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ * original\PYZus{}mean =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mf}{1.5} \PY{o}{*} \PY{n}{original\PYZus{}mean}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+4
+
+havana\_darker\_10.mean() = 115.5282429893695 while 90\% * original\_mean = 115.55957145802788
+havana\_brighter\_10.mean() = 141.3111730968964 while 110\% * original\_mean = 141.23947622647853
+havana\_darker\_50.mean() = 69.5359065707478 while 50\% * original\_mean = 64.1997619211266
+havana\_brighter\_50.mean() = 188.36524773949168 while 150\% * original\_mean = 192.59928576337978
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+\end{enumerate}
+
+Are the means of the brightness shifted images equal to the
+corresponding percentages of the mean of the original image?
+
+\hypertarget{answer-they-are-not-the-same-except-in-the-case-of-the-10-darker-shift.}{%
+\paragraph{Answer: They are not the same, except in the case of the 10\%
+darker
+shift.}\label{answer-they-are-not-the-same-except-in-the-case-of-the-10-darker-shift.}}
+
+Depending on the image it is likely they are not the same. The following
+problems will explore the reasons for that.
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+\end{enumerate}
+
+Write a new version of your brightness shift program that does not
+convert the results to uint8. After shifting the brightness of the class
+double image, return it with out converting it to uint8.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} 5.}
+        \PY{k}{def} \PY{n+nf}{adjustBrithness\PYZus{}double}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{p}\PY{p}{)}\PY{p}{:}
+            \PY{n}{mean} \PY{o}{=} \PY{n}{image}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+            \PY{n}{brightness\PYZus{}shift} \PY{o}{=} \PY{p}{(}\PY{n}{p}\PY{o}{/}\PY{l+m+mf}{100.0} \PY{o}{\PYZhy{}} \PY{l+m+mf}{1.0}\PY{p}{)} \PY{o}{*} \PY{n}{mean}\PY{p}{;}
+            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{brightness\PYZus{}shift}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\item
+\end{enumerate}
+
+Compute and display the mean intensities of the 4 brightness-shifted
+class double images. (Be sure to label the numbers in your report.)
+
+Are the means of the brightness shifted images equal to the
+corresponding percentages of the mean of the original image?
+
+\hypertarget{answer-without-conversion-to-uint8-the-means-are-indeed-shifted-exactly.}{%
+\paragraph{Answer: Without conversion to uint8, the means are indeed
+shifted
+exactly.}\label{answer-without-conversion-to-uint8-the-means-are-indeed-shifted-exactly.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{havana\PYZus{}darker\PYZus{}10\PYZus{}double} \PY{o}{=} \PY{n}{adjustBrithness\PYZus{}double}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{)}
+         \PY{n}{havana\PYZus{}brighter\PYZus{}10\PYZus{}double} \PY{o}{=} \PY{n}{adjustBrithness\PYZus{}double}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{p}{,} \PY{l+m+mi}{110}\PY{p}{)}
+         \PY{n}{havana\PYZus{}darker\PYZus{}50\PYZus{}double} \PY{o}{=} \PY{n}{adjustBrithness\PYZus{}double}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}
+         \PY{n}{havana\PYZus{}brighter\PYZus{}50\PYZus{}double} \PY{o}{=} \PY{n}{adjustBrithness\PYZus{}double}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{p}{,} \PY{l+m+mi}{150}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{6. havana\PYZus{}darker\PYZus{}10\PYZus{}double.mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{havana\PYZus{}darker\PYZus{}10\PYZus{}double}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{while 90}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ * original\PYZus{}mean =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mf}{0.9} \PY{o}{*} \PY{n}{original\PYZus{}mean}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{6. havana\PYZus{}brighter\PYZus{}10\PYZus{}double.mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{havana\PYZus{}brighter\PYZus{}10\PYZus{}double}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{while 110}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ * original\PYZus{}mean =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mf}{1.1} \PY{o}{*} \PY{n}{original\PYZus{}mean}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{6. havana\PYZus{}darker\PYZus{}50\PYZus{}double.mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{havana\PYZus{}darker\PYZus{}50\PYZus{}double}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{while 50}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ * original\PYZus{}mean =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mf}{0.5} \PY{o}{*} \PY{n}{original\PYZus{}mean}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{6. havana\PYZus{}brighter\PYZus{}50\PYZus{}double.mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{havana\PYZus{}brighter\PYZus{}50\PYZus{}double}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{while 150}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ * original\PYZus{}mean =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mf}{1.5} \PY{o}{*} \PY{n}{original\PYZus{}mean}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6. havana\_darker\_10\_double.mean() = 115.55957145802779 while 90\% * original\_mean = 115.55957145802788
+6. havana\_brighter\_10\_double.mean() = 141.23947622647853 while 110\% * original\_mean = 141.23947622647853
+6. havana\_darker\_50\_double.mean() = 64.19976192112664 while 50\% * original\_mean = 64.1997619211266
+6. havana\_brighter\_50\_double.mean() = 192.59928576338 while 150\% * original\_mean = 192.59928576337978
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+\end{enumerate}
+
+The difference between the means that should, theoretically, be the same
+but are not is due to two phenomena: ``round-off'' errors and
+''clipping.'' When a class double image is converted to class uint8, any
+intensity values that are not integers are converted to integers. Try
+this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint8([}\FloatTok{128} \FloatTok{128.4} \FloatTok{128.5} \FloatTok{128.6}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{np}\PY{o}{.}\PY{n}{rint}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{128}\PY{p}{,} \PY{l+m+mf}{128.4}\PY{p}{,} \PY{l+m+mf}{128.5}\PY{p}{,} \PY{l+m+mf}{128.6}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} array([128, 128, 128, 129])
+\end{Verbatim}
+            
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+\end{enumerate}
+
+Based on what you see how are double values being converted to uint8?
+
+\hypertarget{answer-matlab-rounds-double-values-to-the-nearest-integer-when-the-fractional-component-is-strictly-smaller-the-number-is-floored-if-it-is-greater-or-equal-to-0.5-the-number-is-ceilinged.}{%
+\paragraph{Answer: Matlab rounds double values to the nearest integer:
+when the fractional component is strictly smaller, the number is
+floored; if it is greater or equal to 0.5, the number is
+ceilinged.}\label{answer-matlab-rounds-double-values-to-the-nearest-integer-when-the-fractional-component-is-strictly-smaller-the-number-is-floored-if-it-is-greater-or-equal-to-0.5-the-number-is-ceilinged.}}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Now try this:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint8([-}\FloatTok{128} \FloatTok{0} \FloatTok{255} \FloatTok{383}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{128}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{,} \PY{l+m+mi}{383}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{clip}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} array([  0,   0, 255, 255])
+\end{Verbatim}
+            
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+\end{enumerate}
+
+Why, do you suppose, is this phenomenon called clipping?
+
+\hypertarget{answer-because-the-conversion-takes-max0-number-on-one-hand-and-minnumber-255-on-the-other.}{%
+\paragraph{Answer: Because the conversion takes max(0, number) on one
+hand and min(number, 255) on the
+other.}\label{answer-because-the-conversion-takes-max0-number-on-one-hand-and-minnumber-255-on-the-other.}}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+\end{enumerate}
+
+If there were no clipping, the mean intensity would shift along with all
+the intensities.
+
+Let I be the original image and let \(R\) = number of rows, \(C\) =
+number of columns, and \(B\) = number of bands in \(I\). Then
+\(N = R * C * B\), is the total number of scalar intensity values in
+\(I\). The mean of \(I\) is
+
+\[a_0=\frac{1}{N} \sum_{b=1}^{B} \sum_{r=1}^{R} \sum_{c=1}^{C} I(r,c,b),\]
+
+If all the intensities were shifted by d then
+
+\[
+\begin{equation} \label{eq1}
+    \begin{split}
+        a_1 & = \frac{1}{N} \sum_{b=1}^{B} \sum_{r=1}^{R} \sum_{c=1}^{C} (I(r,c,b)+d) \\
+            & = \frac{1}{N} \sum_{b=1}^{B} \sum_{r=1}^{R} \sum_{c=1}^{C} I(r,c,b) + \frac{1}{N}Nd\\
+            & = a_0+d.
+    \end{split}
+\end{equation}
+\]
+
+However, if clipping occurs this no longer holds. Try this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{>> mean(}\FloatTok{0}\NormalTok{:}\FloatTok{256}\NormalTok{)}
+\NormalTok{>> mean(-}\FloatTok{128}\NormalTok{:}\FloatTok{128}\NormalTok{)}
+\NormalTok{>> mean(uint8(-}\FloatTok{128}\NormalTok{:}\FloatTok{128}\NormalTok{))}
+\NormalTok{>> mean(}\FloatTok{128}\NormalTok{:}\FloatTok{384}\NormalTok{)}
+\NormalTok{>> mean(uint8(}\FloatTok{128}\NormalTok{:}\FloatTok{384}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{7. np.arange(257).mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{257}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{7. np.arange(\PYZhy{}128,129).mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{128}\PY{p}{,}\PY{l+m+mi}{129}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{7. np.arange(\PYZhy{}128,129).clip(0,255).mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{128}\PY{p}{,}\PY{l+m+mi}{129}\PY{p}{)}\PY{o}{.}\PY{n}{clip}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{255}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{7. np.arange(128,385).mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{128}\PY{p}{,}\PY{l+m+mi}{385}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{7. np.arange(128,385).clip(0,255).mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{128}\PY{p}{,}\PY{l+m+mi}{385}\PY{p}{)}\PY{o}{.}\PY{n}{clip}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{255}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+7. np.arange(257).mean() = 128.0
+7. np.arange(-128,129).mean() = 0.0
+7. np.arange(-128,129).clip(0,255).mean() = 32.12451361867704
+7. np.arange(128,385).mean() = 256.0
+7. np.arange(128,385).clip(0,255).mean() = 223.37354085603113
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+\end{enumerate}
+
+Given what you have observed, how does the mean change when the image is
+clipped at 0? How does it change when it is clipped at 255?
+
+\hypertarget{answer-when-the-image-is-clipped-at-0-the-mean-is-bigger-when-there-are-negative-numbers-after-a-shift-if-the-image-is-clipped-at-255-the-mean-is-smaller-when-there-are-intensities-above-255-after-a-shift.}{%
+\paragraph{Answer: When the image is clipped at 0, the mean is bigger
+when there are negative numbers after a shift; if the image is clipped
+at 255, the mean is smaller when there are intensities above 255 after a
+shift.}\label{answer-when-the-image-is-clipped-at-0-the-mean-is-bigger-when-there-are-negative-numbers-after-a-shift-if-the-image-is-clipped-at-255-the-mean-is-smaller-when-there-are-intensities-above-255-after-a-shift.}}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+\end{enumerate}
+
+Operate on the 50\% shifted images to ``restore'' them to their original
+brightness levels. Assuming no clipping, what percentage p should you
+use to restore
+
+\hypertarget{answer}{%
+\paragraph{Answer:}\label{answer}}
+
+\hypertarget{analytically-the-we-can-express-the-restoration-p-as-a-function-of-the-original-p}{%
+\paragraph{Analytically, the we can express the restoration p as a
+function of the original
+p:}\label{analytically-the-we-can-express-the-restoration-p-as-a-function-of-the-original-p}}
+
+\[
+d(\mu, p) = (\frac{p}{100}-1) \times \mu.
+\]
+
+\[
+\begin{equation}
+    \begin{split}
+        d_{01} & = d(\mu_0, p_0) = (\frac{p_0}{100}-1) \times \mu_0 \\
+        \mu_1 & = \mu_0 + d_{01} \\
+        d_{12} & = d(\mu_1, p_1) = (\frac{p_1}{100}-1) \times \mu_1 \\
+            & = (\frac{p_1}{100}-1) \times (\mu_0 + d_0) \\
+            & = (\frac{p_1}{100}-1) \times (\mu_0 + (\frac{p_0}{100}-1) \times \mu_0) \\
+            & = (\frac{p_1}{100}-1) \times \frac{p_0}{100} \mu_0 \\
+        \mu_2 & = \mu_1 + d_{12}.
+    \end{split}
+\end{equation}
+\]
+
+\hypertarget{we-want-d_1-to-cancel-out-d_0.-that-is}{%
+\paragraph{\texorpdfstring{We want \(d_1\) to cancel out \(d_0\). That
+is,}{We want d\_1 to cancel out d\_0. That is,}}\label{we-want-d_1-to-cancel-out-d_0.-that-is}}
+
+\[
+\begin{equation}
+    \begin{split}
+        \mu_2 & = \mu_0 \\
+        \mu_1+d_{12} & = \mu_0 \\
+        \mu_0+d_{01}+d_{12} & = \mu_0 \\
+        d_{12} = -d_{01} \\
+        (\frac{p_1}{100}-1) \times \frac{p_0}{100} \mu_0 & = - (\frac{p_0}{100}-1) \times \mu_0 \\
+        (\frac{p_1}{100}-1) \times \frac{p_0}{100} & = 1 - \frac{p_0}{100} \\
+        \frac{p_1}{100} \frac{p_0}{100} - \frac{p_0}{100} & = 1 - \frac{p_0}{100} \\
+        \frac{p_1}{100} \frac{p_0}{100} & = 1 \\
+        p_1 & = \frac{10000}{p_0}.
+    \end{split}
+\end{equation}
+\]
+
+\hypertarget{using-this-formula-to-restore}{%
+\paragraph{Using this formula, to
+restore}\label{using-this-formula-to-restore}}
+
+\hypertarget{a-the-50-dimmer-image-that-is}{%
+\paragraph{(a) the 50\% dimmer image, that
+is,}\label{a-the-50-dimmer-image-that-is}}
+
+\[
+\begin{equation}
+    \begin{split}
+        p_1 & = \frac{10000}{p_0} \\
+            & = \frac{10000}{50} \\
+            & = 200
+    \end{split}
+\end{equation}
+\]
+
+\hypertarget{b-the-50-brighter-image-that-is}{%
+\paragraph{(b) the 50\% brighter image, that
+is,}\label{b-the-50-brighter-image-that-is}}
+
+\[
+\begin{equation}
+    \begin{split}
+        p_1 & = \frac{10000}{p_0} \\
+            & = \frac{10000}{150} \\
+            & = \frac{200}{3}
+    \end{split}
+\end{equation}
+\]
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+\end{enumerate}
+
+Use these numbers to generate two new uint8 images. Compare the mean
+values of these restored uint8 images to that of the original.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{havana\PYZus{}darker\PYZus{}50\PYZus{}restored} \PY{o}{=} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{havana\PYZus{}darker\PYZus{}50}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{)}
+         \PY{n}{havana\PYZus{}brighter\PYZus{}50\PYZus{}restored} \PY{o}{=} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{havana\PYZus{}brighter\PYZus{}50}\PY{p}{,} \PY{l+m+mi}{200}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{8(a). havana\PYZus{}darker\PYZus{}50\PYZus{}double\PYZus{}restored.mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{havana\PYZus{}darker\PYZus{}50\PYZus{}restored}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{while original\PYZus{}mean =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{original\PYZus{}mean}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{8(b). havana\PYZus{}brighter\PYZus{}50\PYZus{}double\PYZus{}restored.mean() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{havana\PYZus{}brighter\PYZus{}50\PYZus{}restored}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{while original\PYZus{}mean =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{original\PYZus{}mean}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+8(a). havana\_darker\_50\_double\_restored.mean() = 139.50624312683286 while original\_mean = 128.3995238422532
+8(b). havana\_brighter\_50\_double\_restored.mean() = 125.36524773949169 while original\_mean = 128.3995238422532
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Display the images, include titles so you know which is which, and
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{image\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{3}
+         \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{image\PYZus{}size}\PY{p}{,}\PY{l+m+mi}{6}\PY{o}{*}\PY{n}{image\PYZus{}size}\PY{p}{)}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{8.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} \PY{n}{horizontalalignment}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{p}{,} \PY{n}{aspect}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{original}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{havana\PYZus{}darker\PYZus{}50\PYZus{}restored}\PY{p}{,} \PY{n}{aspect}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{restored from 50 percent darker}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{havana\PYZus{}brighter\PYZus{}50\PYZus{}restored}\PY{p}{,} \PY{n}{aspect}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{restored from 50 percent brighter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         
+         \PY{p}{[}\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}anchor}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{W}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{for} \PY{n}{ax} \PY{o+ow}{in} \PY{n}{axes}\PY{p}{]} \PY{c+c1}{\PYZsh{} left align all three images}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_35_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Comment on any differences you can see between them and the originals.
+You do not need to include the restored images in your report. However,
+if you use the Matlab publish feature to generate your report they will
+be included by default. And, of course, that's OK.
+
+\hypertarget{answer-compared-to-the-original-the-image-restored-from-the-dark-shift-seems-overall-brighter-but-with-less-contrast.-conversely-the-one-restored-from-the-bright-shift-seems-darker-on-average-but-also-with-less-contrast.}{%
+\paragraph{Answer: Compared to the original, the image restored from the
+dark shift seems overall brighter but with less contrast. Conversely,
+the one restored from the bright shift seems darker on average but also
+with less
+contrast.}\label{answer-compared-to-the-original-the-image-restored-from-the-dark-shift-seems-overall-brighter-but-with-less-contrast.-conversely-the-one-restored-from-the-bright-shift-seems-darker-on-average-but-also-with-less-contrast.}}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\item
+\end{enumerate}
+
+If clipping occurs due to processing of any kind, that means that
+information has been lost. Visually significant features of the image
+may be obliterated. That's why I placed the word, restore, in quotes
+above. One may be able to re-shift the mean to the original number but
+the features that are lost will not return. Here, we will determine the
+extent of the damage by comparing the restored images to the originals.
+Compute two images that are the squared differences between the original
+image and the restored 50\% brightness increased and decreased images
+(the as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{>> D = (double(I) - double(J)).^}\FloatTok{2}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+where I is the original uint8 image and J is one of the uint8 restored
+images.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{D\PYZus{}darker\PYZus{}50} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{subtract}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} 
+                                             \PY{n}{havana\PYZus{}darker\PYZus{}50\PYZus{}restored}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{9. D\PYZus{}darker\PYZus{}50.min() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{D\PYZus{}darker\PYZus{}50}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{and D\PYZus{}darker\PYZus{}50.max() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{D\PYZus{}darker\PYZus{}50}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{D\PYZus{}brighter\PYZus{}50} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{subtract}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} 
+                                               \PY{n}{havana\PYZus{}brighter\PYZus{}50\PYZus{}restored}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{9. D\PYZus{}brighter\PYZus{}50.min() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{D\PYZus{}brighter\PYZus{}50}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{and D\PYZus{}brighter\PYZus{}50.max() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{D\PYZus{}brighter\PYZus{}50}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} The 10\PYZpc{} shifts}
+         \PY{n}{havana\PYZus{}darker\PYZus{}10\PYZus{}restored} \PY{o}{=} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{havana\PYZus{}darker\PYZus{}10}\PY{p}{,} \PY{l+m+mi}{1000}\PY{o}{/}\PY{l+m+mi}{9}\PY{p}{)}
+         \PY{n}{D\PYZus{}darker\PYZus{}10} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{subtract}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} 
+                                             \PY{n}{havana\PYZus{}darker\PYZus{}10\PYZus{}restored}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{9. D\PYZus{}darker\PYZus{}10.min() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{D\PYZus{}darker\PYZus{}10}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{and D\PYZus{}darker\PYZus{}10.max() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{D\PYZus{}darker\PYZus{}10}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{havana\PYZus{}brighter\PYZus{}10\PYZus{}restored} \PY{o}{=} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{havana\PYZus{}brighter\PYZus{}10}\PY{p}{,} \PY{l+m+mi}{1000}\PY{o}{/}\PY{l+m+mi}{11}\PY{p}{)}
+         \PY{n}{D\PYZus{}brighter\PYZus{}10} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{subtract}\PY{p}{(}\PY{n}{havana\PYZus{}np}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} 
+                                               \PY{n}{havana\PYZus{}brighter\PYZus{}10\PYZus{}restored}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{9. D\PYZus{}brighter\PYZus{}10.min() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{D\PYZus{}brighter\PYZus{}10}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{and D\PYZus{}brighter\PYZus{}10.max() =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{D\PYZus{}brighter\PYZus{}10}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+9. D\_darker\_50.min() = 0.0 and D\_darker\_50.max() = 4900.0
+9. D\_brighter\_50.min() = 0.0 and D\_brighter\_50.max() = 3969.0
+9. D\_darker\_10.min() = 0.0 and D\_darker\_10.max() = 169.0
+9. D\_brighter\_10.min() = 0.0 and D\_brighter\_10.max() = 169.0
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\item
+\end{enumerate}
+
+Find and display the minimum and maximum values of each difference
+image. The best way to display the difference images is by using
+
+\begin{verbatim}
+>> figure
+>> imagesc(D) 
+>> truesize
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{9. Difference Images}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} normalize our difference image to [0, 1]}
+         \PY{n}{D\PYZus{}darker\PYZus{}50} \PY{o}{*}\PY{o}{=} \PY{l+m+mf}{1.0}\PY{o}{/}\PY{n}{D\PYZus{}darker\PYZus{}50}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{D\PYZus{}darker\PYZus{}50}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{restored from darker 50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{D\PYZus{}brighter\PYZus{}50} \PY{o}{*}\PY{o}{=} \PY{l+m+mf}{1.0}\PY{o}{/}\PY{n}{D\PYZus{}brighter\PYZus{}50}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{D\PYZus{}brighter\PYZus{}50}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{restored from brighter 50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{D\PYZus{}darker\PYZus{}10} \PY{o}{*}\PY{o}{=} \PY{l+m+mf}{1.0}\PY{o}{/}\PY{n}{D\PYZus{}darker\PYZus{}10}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{D\PYZus{}darker\PYZus{}10}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{restored from darker 10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{D\PYZus{}brighter\PYZus{}10} \PY{o}{*}\PY{o}{=} \PY{l+m+mf}{1.0}\PY{o}{/}\PY{n}{D\PYZus{}brighter\PYZus{}10}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{D\PYZus{}brighter\PYZus{}10}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{restored from brighter 10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_40_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Comment on the results. What does each one show? How do the 10\%
+  difference images compare to the 50\% difference images. Include all
+  four of the difference images in your report.
+\end{enumerate}
+
+\hypertarget{answer-each-difference-image-shows-the-distance-between-the-original-image-and-the-restored-image-at-each-pixel-level.-recovering-from-darker-images-loses-the-details-in-darker-regions-and-vice-versa-for-brighter-ones.-it-is-clear-that-the-10-difference-images-are-much-less-different-than-the-50-ones.}{%
+\paragraph{Answer: Each difference image shows the distance between the
+original image and the restored image at each pixel level. Recovering
+from darker images loses the details in darker regions, and vice versa
+for brighter ones. It is clear that the 10\% difference images are much
+less different than the 50\%
+ones.}\label{answer-each-difference-image-shows-the-distance-between-the-original-image-and-the-restored-image-at-each-pixel-level.-recovering-from-darker-images-loses-the-details-in-darker-regions-and-vice-versa-for-brighter-ones.-it-is-clear-that-the-10-difference-images-are-much-less-different-than-the-50-ones.}}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\item
+\end{enumerate}
+
+Color Modification through Brightness Shifting
+
+If the brightness of only one color band is changed, the overall color
+of the image is changed.
+
+Separate the truecolor image, I, into its three bands. That is, create
+three monochrome images, IR that is the red intensity, IG that is the
+green intensity, and IB that is the blue intensity from your truecolor
+image.
+
+Display each of them as grayscale images. You may need to use the Matlab
+function \texttt{gray(256)} to generate the correct colormap. That is,
+to display one of the images do
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{>> figure; image(IR); truesize; colormap(gray(}\FloatTok{256}\NormalTok{); }
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{IR} \PY{o}{=} \PY{n}{havana\PYZus{}np}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{IG} \PY{o}{=} \PY{n}{havana\PYZus{}np}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{IB} \PY{o}{=} \PY{n}{havana\PYZus{}np}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}
+         
+         \PY{n}{image\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{3}
+         \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{image\PYZus{}size}\PY{p}{,}\PY{l+m+mi}{6}\PY{o}{*}\PY{n}{image\PYZus{}size}\PY{p}{)}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} \PY{n}{horizontalalignment}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{IR}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{IG}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{IB}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{p}{[}\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}anchor}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{W}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{for} \PY{n}{ax} \PY{o+ow}{in} \PY{n}{axes}\PY{p}{]} \PY{c+c1}{\PYZsh{} left align all three images}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_43_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\item
+\end{enumerate}
+
+Use your brightness shifting function to:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Increase the brightness of the red band by 20\%. Then recombine it
+  with the unchanged, original green and blue bands to create a new
+  truecolor image. Display it and comment on its change from the
+  original.
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{red\PYZus{}120} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{[}\PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{IR}\PY{p}{,} \PY{l+m+mi}{120}\PY{p}{)}\PY{p}{,} \PY{n}{IG}\PY{p}{,} \PY{n}{IB}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{red\PYZus{}120}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(a). 20}\PY{l+s+si}{\PYZpc{} r}\PY{l+s+s1}{edder}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(a). The 20}\PY{l+s+si}{\PYZpc{} r}\PY{l+s+s1}{edder image looks warmer everywhere except where it was originally red.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_45_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+10(a). The 20\% redder image looks warmer everywhere except where it was originally red.
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Decrease the brightness of the red band by 20\%. Then recombine it
+  with the unchanged, original green and blue bands to create a new
+  truecolor image. Display it and comment on its change from the
+  original.
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{red\PYZus{}80} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{[}\PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{IR}\PY{p}{,} \PY{l+m+mi}{80}\PY{p}{)}\PY{p}{,} \PY{n}{IG}\PY{p}{,} \PY{n}{IB}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{red\PYZus{}80}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(b). 20}\PY{l+s+si}{\PYZpc{} le}\PY{l+s+s1}{ss red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(b). The 20}\PY{l+s+si}{\PYZpc{} le}\PY{l+s+s1}{ss red image looks colder everywhere except where it was originally cold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_47_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+10(b). The 20\% less red image looks colder everywhere except where it was originally cold
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Increase the brightness of the green band by 20\%. Then recombine it
+  with the unchanged, original red and blue bands to create a new
+  truecolor image. Display it and comment on its change from the
+  original.
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{green\PYZus{}120} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{[}\PY{n}{IR}\PY{p}{,} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{IG}\PY{p}{,} \PY{l+m+mi}{120}\PY{p}{)}\PY{p}{,} \PY{n}{IB}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{green\PYZus{}120}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(c). 20}\PY{l+s+si}{\PYZpc{} g}\PY{l+s+s1}{reener}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(c). The 20}\PY{l+s+si}{\PYZpc{} g}\PY{l+s+s1}{reener image looks colder overall.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_49_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+10(c). The 20\% greener image looks colder overall.
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Decrease the brightness of the green band by 20\%. Then recombine it
+  with the unchanged, original red and blue bands to create a new
+  truecolor image. Display it and comment on its change from the
+  original.
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{green\PYZus{}80} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{[}\PY{n}{IR}\PY{p}{,} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{IG}\PY{p}{,} \PY{l+m+mi}{80}\PY{p}{)}\PY{p}{,} \PY{n}{IB}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{green\PYZus{}80}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(d). 20}\PY{l+s+si}{\PYZpc{} le}\PY{l+s+s1}{ss green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(d). The 20}\PY{l+s+si}{\PYZpc{} le}\PY{l+s+s1}{ss green image looks warmer but with more blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_51_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+10(d). The 20\% less green image looks warmer but with more blue
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Increase the brightness of the blue band by 20\%. Then recombine it
+  with the unchanged, original red and green bands to create a new
+  truecolor image. Display it and comment on its change from the
+  original.
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{blue\PYZus{}120} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{[}\PY{n}{IR}\PY{p}{,} \PY{n}{IG}\PY{p}{,} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{IB}\PY{p}{,} \PY{l+m+mi}{120}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{blue\PYZus{}120}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(e). 20}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ bluer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(e). The 20}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ bluer image looks colder.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_53_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+10(e). The 20\% bluer image looks colder.
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Decrease the brightness of the blue band by 20\%. Then recombine it
+  with the unchanged, original red and green bands to create a new
+  truecolor image. Display it and comment on its change from the
+  original.
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{blue\PYZus{}80} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{[}\PY{n}{IR}\PY{p}{,} \PY{n}{IG}\PY{p}{,} \PY{n}{adjustBrightness}\PY{p}{(}\PY{n}{IB}\PY{p}{,} \PY{l+m+mi}{80}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{blue\PYZus{}80}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(f). 20}\PY{l+s+si}{\PYZpc{} le}\PY{l+s+s1}{ss blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10(f). The 20}\PY{l+s+si}{\PYZpc{} le}\PY{l+s+s1}{ss blue image also looks warmer but a little more green overall.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_55_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+10(f). The 20\% less blue image also looks warmer but a little more green overall.
+
+    \end{Verbatim}
+
+    In general, how might you use this approach to tint the image with any
+given color?
+
+\hypertarget{answer-i-could-implement-a-function-with-p-parameters-for-each-color-channel-in-order-to-tint-the-image-with-the-desired-color.}{%
+\paragraph{Answer: I could implement a function with p parameters for
+each color channel in order to tint the image with the desired
+color.}\label{answer-i-could-implement-a-function-with-p-parameters-for-each-color-channel-in-order-to-tint-the-image-with-the-desired-color.}}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
